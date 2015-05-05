@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<App uuid="150c72d0-211b-427e-8602-2a24db534e9">
+   <Name>Bing Translator</Name>
+   <Author>Incomedia</Author>
+   <Version>3</Version>
+   <Category>Widgets</Category>
+   <Description l10n-id="general-description">Translate your site using Microsoft Bing.</Description>
+   <ShowPreview>True</ShowPreview>
+   <Parameters>
+      <Tab>
+         <Label>Graphics</Label>
+         <Fields>
+            <Field id="color" type="color">
+               <DefaultValue>#DDDDDD</DefaultValue>
+               <Label l10n-id="color">Color:</Label>
+               <UpdatesPreview>true</UpdatesPreview>
+            </Field>
+            <Field id="bgcolor" type="color">
+               <DefaultValue>#555555</DefaultValue>
+               <Label l10n-id="bgcolor">Background color:</Label>
+               <UpdatesPreview>true</UpdatesPreview>
+            </Field>
+            <Field id="style" type="dropdown">
+               <DefaultValue>Dark</DefaultValue>
+               <Label l10n-id="style">Style:</Label>
+               <Options>
+                  <Option value="Dark" l10n-id="style_dark">Dark</Option>
+                  <Option value="Light" l10n-id="style_light">Light</Option>
+               </Options>
+               <UpdatesPreview>true</UpdatesPreview>
+            </Field>
+         </Fields>
+         <ShowPreview>True</ShowPreview>
+      </Tab>
+   </Parameters>
+   <Hooks><![CDATA[
+      function IsEmpty() {
+         return false;
+      }
+      function GetHeight() {
+         return 53;
+      }
+   ]]></Hooks>
+   <PreviewOutput><![CDATA[
+      <!-- Add a gray background to make the light style visibile -->
+      <div style="background-color: <?wsx5 document.write(parameters.style.value == "Dark" ? "#eee" : "#ccc") ?>; height: 100%; text-align: center;">
+         <div id='MicrosoftTranslatorWidget' class='<?wsx5 document.write(parameters.style.value) ?>' style='color:<?wsx5 document.write(parameters.color.value) ?>;background-color:<?wsx5 document.write(parameters.bgcolor.value) ?>'></div>
+         <script type='text/javascript'>setTimeout(function(){{
+            var s=document.createElement('script');
+            s.type='text/javascript';
+            s.charset='UTF-8';
+            s.src=((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com') + '/ajax/v3/WidgetV3.ashx?siteData=ueOIGRSKkd965FeEGM5JtQ**&ctf=True&ui=true&settings=Manual&from=<?wsx5 document.write(wsx5.contentLanguageId.toLowerCase()) ?>';
+            var p=document.getElementsByTagName('head')[0]||document.documentElement;
+            p.insertBefore(s,p.firstChild);
+         }},0);</script>
+      </div>
+      ]]>
+   </PreviewOutput>
+   <Output><![CDATA[
+		<div id='MicrosoftTranslatorWidget' class='<?wsx5 document.write(parameters.style.value) ?>' style='color:<?wsx5 document.write(parameters.color.value) ?>;background-color:<?wsx5 document.write(parameters.bgcolor.value) ?>'></div>
+		<script type='text/javascript'>setTimeout(function(){{
+			var s=document.createElement('script');
+			s.type='text/javascript';
+			s.charset='UTF-8';
+			s.src=((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com') + '/ajax/v3/WidgetV3.ashx?siteData=ueOIGRSKkd965FeEGM5JtQ**&ctf=True&ui=true&settings=Manual&from=<?wsx5 document.write(wsx5.contentLanguageId.toLowerCase()) ?>';
+			var p=document.getElementsByTagName('head')[0]||document.documentElement;
+			p.insertBefore(s,p.firstChild);
+		}},0);</script>
+      ]]></Output>
+</App>
